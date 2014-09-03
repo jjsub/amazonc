@@ -12,6 +12,7 @@ exports.login = function(req, res){
 
 exports.logout = function(req, res){
   req.logout();
+  req.flash('notice', 'You have sucessfully logged out.');
   res.redirect('/');
 };
 
@@ -23,5 +24,20 @@ exports.create = function(req, res){
       res.redirect('/register');
     }
   });
+};
+
+
+exports.edit = function(req, res){
+  res.render('users/edit');
+};
+
+exports.update = function(req, res){
+  res.locals.user.save(req.body, function(){
+    res.redirect('/profile');
+  });
+};
+
+exports.show = function(req, res){
+  res.render('users/show');
 };
 

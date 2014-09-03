@@ -31,7 +31,8 @@ module.exports = function(app, express){
   app.post('/register', users.create);
   app.get('/login', users.login);
   app.post('/login', passport.authenticate('local', {successRedirect:'/', failureRedirect:'/login', successFlash:'Successful login!', failureFlash:'Sorry, your login was incorrect.'}));
-
+  app.get('/profile', users.show);
+  app.get('/profile/edit', users.edit);
   app.use(security.bounce);
   app.delete('/logout', users.logout);
 
